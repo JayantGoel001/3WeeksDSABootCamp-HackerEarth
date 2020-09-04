@@ -1,11 +1,7 @@
-import java.io.*;
-//import for Scanner and other utility classes
 import java.util.*;
 
-// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
-
 class SecondLargest {
-    public static void main(String args[] ) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int[] ar =new int[3];
