@@ -1,6 +1,6 @@
 import java.util.*;
 class AnagramIsLove {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         String str = scanner.nextLine();
@@ -28,7 +28,7 @@ class AnagramIsLove {
                 }
                 boolean TRUE = true;
                 for(int j=0;j<str1.length();j++){
-                    if(hashMap1.get(str1.charAt(j)) != hashMap2.get(str1.charAt(j))){
+                    if(!hashMap1.get(str1.charAt(j)).equals(hashMap2.get(str1.charAt(j)))){
                         TRUE = false;
                         System.out.println("NO");
                         break;
