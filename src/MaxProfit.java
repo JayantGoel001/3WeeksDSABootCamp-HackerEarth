@@ -9,9 +9,9 @@ class MaxProfit {
             int r = sc.nextInt();
             double max = 0.5;
             int count = 0 ;
-            int ar;
+            long ar;
             for(int j=0;j<n;j++){
-                ar = sc.nextInt();
+                ar = sc.nextLong();
                 if(ar>max){
                     max=ar;
                     count++;
