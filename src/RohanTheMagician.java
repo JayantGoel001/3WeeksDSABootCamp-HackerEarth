@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class RohanTheMagician {
@@ -19,7 +18,6 @@ public class RohanTheMagician {
                 RamShyam[k++] = i%2==0?0:1;
             }
         }
-        System.out.println(Arrays.toString(RamShyam));
 
         int t =scanner.nextInt();
         for (int i = 0; i < t; i++) {
