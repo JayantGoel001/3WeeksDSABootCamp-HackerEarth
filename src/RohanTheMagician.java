@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class RohanTheMagician {
@@ -17,9 +18,21 @@ public class RohanTheMagician {
         for (int i = 0; i < t; i++) {
             int x = scanner.nextInt();
             x = cumSum[n-1] - x;
-            int index = binarySearch(cumSum,x);
+            int index = linearSearch(cumSum,x);
             System.out.println(index);
         }
+    }
+
+    private static int linearSearch(int[] cumSum, int x) {
+        if (x<=cumSum[0]){
+            return 0;
+        }
+        for (int i = 1; i < cumSum.length; i++) {
+            if(cumSum[i]>x && x>cumSum[i-1]){
+                return i;
+            }
+        }
+        return -1;
     }
 
     private static int binarySearch(int[] cumSum, int x) {
