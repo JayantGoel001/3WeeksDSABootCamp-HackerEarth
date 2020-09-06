@@ -1,28 +1,26 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class RaviPlan {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] ar= new int[n];
-        int[] x = new int[n];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int j=0;
         int k=0;
-        for (int i = 0; i <n; i++) {
-            ar[i] = scanner.nextInt();
-            if(i!=0){
-                if (ar[i] != ar[i - 1]) {
-                    k++;
-                }
-                x[k]+=1;
-            }else{
-                x[k] = 1;
-            }
-        }
-
         int max=0;
-        for (int i = 0; i < n; i++) {
-            if(x[i]>max){
-                max=x[i];
+        String[] arr = br.readLine().split(" ");
+        for(int i=0;i<n;i++){
+            int x = Integer.parseInt(arr[i]);
+            if (x==0){
+                j++;
+                max = Math.max(j,max);
+                k=0;
+            }
+            else{
+                k++;
+                max=Math.max(k,max);
+                j=0;
             }
         }
         System.out.println(max);
