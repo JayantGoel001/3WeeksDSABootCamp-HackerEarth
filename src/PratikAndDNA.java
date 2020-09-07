@@ -48,7 +48,7 @@ public class PratikAndDNA {
 
         for (int i = 0; i < t; i++) {
             int n = fr.nextInt();
-            String str = fr.nextLine();
+            String str = fr.nextLine().toUpperCase();
             StringBuilder st = new StringBuilder();
             boolean isRNA = false;
             for (int j = 0; j < n; j++) {
