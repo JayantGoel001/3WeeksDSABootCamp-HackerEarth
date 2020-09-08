@@ -8,25 +8,26 @@ class SubsequenceTime {
         int t =Integer.parseInt(br.readLine());
         for(int i=0;i<t;i++){
             String str = br.readLine();
-            ArrayList<String> arrayList = new ArrayList<String>();
-            getSubSec(str,arrayList,"");
-            Collections.sort(arrayList);
+            TreeSet<String> arrayList = new TreeSet<>();
+            getSubSec(str,arrayList);
             for(String ele:arrayList){
                 System.out.println(ele);
             }
         }
     }
-    public static void getSubSec(String str,ArrayList<String> arrayList,String subsec){
+    public static void getSubSec(String str,TreeSet<String> arrayList){
         if(str.isEmpty()){
-            if(!arrayList.contains(subsec))
-            {
-                arrayList.add(subsec);
+            return;
+        }
+        if(!arrayList.contains(str))
+        {
+            arrayList.add(str);
+            for(int i=0;i<str.length();i++){
+                String t = str;
+                t = t.substring(0,i)+t.substring(i+1);
+                getSubSec(t,arrayList);
             }
         }
-        else{
-            char ch = str.charAt(0);
-            getSubSec(str.substring(1),arrayList,subsec);
-            getSubSec(str.substring(1),arrayList,subsec+ch);
-        }
+
     }
 }
