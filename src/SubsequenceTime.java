@@ -10,7 +10,7 @@ public class SubsequenceTime {
         for (int i = 0; i < t; i++) {
             str = sc.nextLine();
             ArrayList<String> arrayList = new ArrayList<>();
-            getSubSequence(str,arrayList,"");
+            getSubSequence(str, arrayList, "");
             Collections.sort(arrayList);
 
             for (String ele : arrayList) {
