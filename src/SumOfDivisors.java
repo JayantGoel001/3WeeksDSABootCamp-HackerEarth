@@ -30,22 +30,18 @@ public class SumOfDivisors {
         FastReader fr = new FastReader();
         int t = fr.nextInt();
         for (int i = 0; i < t; i++) {
-            int n = fr.nextInt();
+            long n = fr.nextInt();
             int k = fr.nextInt();
-            System.out.println(sumOfDiv(n,k)-sumOfDiv(3,0)-sumOfDiv(6,0)-sumOfDiv(9,0));
-        }
 
-    }
+            long sum=n*(n+1)/2;
 
-    private static int sumOfDiv(int n, int k) {
-        if(n==0){
-            return 0;
-        }
-        if(n==1 || n==2){
-            return n;
-        }
-        else {
-            return sumOfDiv(n-1,k) + sumOfDiv(n-2,k);
+            long k_pow = k;
+            while (k_pow<=n){
+                long num = n/k_pow;
+                sum = sum -  k * num*(num+1)/2 + num*(num+1)/2;
+                k_pow*=k;
+            }
+            System.out.println(sum);
         }
     }
 }
