@@ -1,23 +1,51 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class SumOfDivisors {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int tot = 1000000000+1;
-//        int[] ar =new int[tot];
-        ArrayList<Integer> ar = new ArrayList<Integer>();
-        ar.add(0);
-        ar.add( 1);
-        ar.add(2);
-        for (int i = 3; i <tot; i++) {
-            ar.add(ar.get(i-1)+ar.get(i-2));
+    static class FastReader{
+        BufferedReader br;
+        StringTokenizer st;
+        FastReader(){
+            br = new BufferedReader(new InputStreamReader(System.in));
         }
-        int t =sc.nextInt();
+        String next(){
+            if(st==null || !st.hasMoreElements()){
+                try{
+                    st = new StringTokenizer(br.readLine());
+                }
+                catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt(){
+            return Integer.parseInt(next());
+        }
+    }
+    public static void main(String[] args) {
+        FastReader fr = new FastReader();
+        int t = fr.nextInt();
         for (int i = 0; i < t; i++) {
-            int n = sc.nextInt();
-            int k = sc.nextInt();
-            System.out.println(ar.get(n));
+            int n = fr.nextInt();
+            int k = fr.nextInt();
+            System.out.println(sumOfDiv(n,k)-sumOfDiv(3,0)-sumOfDiv(6,0)-sumOfDiv(9,0));
+        }
+
+    }
+
+    private static int sumOfDiv(int n, int k) {
+        if(n==0){
+            return 0;
+        }
+        if(n==1 || n==2){
+            return n;
+        }
+        else {
+            return sumOfDiv(n-1,k) + sumOfDiv(n-2,k);
         }
     }
 }
