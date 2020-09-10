@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RDXAndHisAnger {
@@ -19,11 +18,12 @@ public class RDXAndHisAnger {
         int personSavedCounter=0;
         int numberOfSaved= 0;
         while (true){
-            if (str.charAt(lyricsCount)=='x'){
+            if (str.charAt(lyricsCount)=='x' && persons.get(personSavedCounter)=='r'){
                 lyricsCount = (lyricsCount+1)%str.length();
             }else{
                 if( persons.get(personSavedCounter)=='r'){
                     persons.replace(personSavedCounter,'s');
+                    lyricsCount = (lyricsCount+1)%str.length();
                     numberOfSaved++;
                 }
             }
