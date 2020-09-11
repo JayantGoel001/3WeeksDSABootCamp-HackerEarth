@@ -72,24 +72,30 @@ public class Array {
         }
 
         ArrayList<Sequence> arrayList = new ArrayList<>();
-        generateSequence(n,m,k,a,b,c,ranges,arrayList);
-        Sequence x = arrayList.get(0);
-        System.out.println(x.x+" "+x.y+" "+x.z);
+        boolean exists = generateSequence(n,m,k,a,b,c,ranges,arrayList);
+        if (exists){
+            Sequence x = arrayList.get(0);
+            System.out.println(x.x+" "+x.y+" "+x.z);
+        }
+        else {
+            System.out.println("-1");
+        }
 
     }
 
-    private static void generateSequence(int n, int m, int k, int[] a, int[] b, int[] c, Range[] ranges, ArrayList<Sequence> arrayList) {
+    private static boolean generateSequence(int n, int m, int k, int[] a, int[] b, int[] c, Range[] ranges, ArrayList<Sequence> arrayList) {
 
         for (int i = ranges[0].l; i <=ranges[0].r ; i++) {
             for (int j = ranges[1].l;j <=ranges[1].r ; j++) {
                 for (int l = ranges[2].l; l <=ranges[2].r; l++) {
                     generateSequenceUtil(n,m,k,a,b,c, arrayList,i,j,l);
                     if (arrayList.size()==1){
-                        return;
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
     private static void generateSequenceUtil(int n, int m, int k, int[] a, int[] b, int[] c, ArrayList<Sequence> arrayList, int x, int y, int z) {
