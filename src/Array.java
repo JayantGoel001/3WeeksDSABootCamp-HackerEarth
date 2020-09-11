@@ -56,11 +56,7 @@ public class Array {
         int[] c = new int[n];
         for (int i = 0; i < n; i++) {
             a[i] = fr.nextInt();
-        }
-        for (int i = 0; i < n; i++) {
             b[i] = fr.nextInt();
-        }
-        for (int i = 0; i < n; i++) {
             c[i] = fr.nextInt();
         }
         Range[] ranges = new Range[3];
