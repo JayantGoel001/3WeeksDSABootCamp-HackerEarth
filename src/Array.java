@@ -81,9 +81,9 @@ public class Array {
 
     private static boolean generateSequence(int n, int m, int k, int[] a, int[] b, int[] c, Range[] ranges, ArrayList<Sequence> arrayList) {
 
-        for (int i = ranges[0].l; i <=ranges[0].r ; i++) {
-            for (int j = ranges[1].l;j <=ranges[1].r ; j++) {
-                for (int l = ranges[2].l; l <=ranges[2].r; l++) {
+        for (int i = ranges[0].l; i <=Math.min(m,ranges[0].r) ; i++) {
+            for (int j = ranges[1].l;j <=Math.min(m,ranges[1].r) ; j++) {
+                for (int l = ranges[2].l; l <=Math.min(ranges[2].r,m); l++) {
                     generateSequenceUtil(n,m,k,a,b,c, arrayList,i,j,l);
                     if (arrayList.size()==1){
                         return true;
@@ -98,7 +98,7 @@ public class Array {
 
         int count = 0;
         for (int i = 0; i < n; i++) {
-            if((x*a[i]+y*b[i]-c[i]*z)%m==0){
+            if((x*a[i]%m+y*b[i]%m-z*c[i]%m)%m==0){
                 count++;
             }
         }
