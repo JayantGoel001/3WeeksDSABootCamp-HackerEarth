@@ -68,10 +68,16 @@ public class Array {
         }
 
         ArrayList<Sequence> arrayList = new ArrayList<>();
-        boolean exists = generateSequence(n,m,k,a,b,c,ranges,arrayList);
+        generateSequence(n,m,k,a,b,c,ranges,arrayList);
+        boolean exists = arrayList.size()>0;
         if (exists){
-            Sequence x = arrayList.get(0);
-            System.out.println(x.x+" "+x.y+" "+x.z);
+            Sequence min = arrayList.get(0);
+            for (Sequence x: arrayList) {
+                if(compare(x,min)){
+                    min  = x;
+                }
+            }
+            System.out.println(min.x+" "+min.y+" "+min.z);
         }
         else {
             System.out.println("-1");
@@ -79,26 +85,36 @@ public class Array {
 
     }
 
-    private static boolean generateSequence(int n, int m, int k, int[] a, int[] b, int[] c, Range[] ranges, ArrayList<Sequence> arrayList) {
+    private static boolean compare(Sequence x, Sequence min) {
 
+        if (x.x<min.x){
+            return true;
+        }
+        else if(x.x == min.x && x.y<min.y){
+            return true;
+        }
+        else if(x.x ==min.x && x.y==min.y && x.z<min.z){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private static void generateSequence(int n, int m, int k, int[] a, int[] b, int[] c, Range[] ranges, ArrayList<Sequence> arrayList) {
 
         for (int i = 0; i < 3; i++) {
-            if(ranges[i].r - ranges[i].l<=m){
-                ranges[i].r = 0;
-                ranges[i].l = m;
+            if((ranges[i].r-ranges[i].l)>=m){
+                ranges[i].r = ranges[i].l+m;
             }
         }
         for (int i = ranges[0].l; i <=ranges[0].r ; i++) {
             for (int j = ranges[1].l;j <= ranges[1].r ; j++) {
                 for (int l = ranges[2].l; l <=ranges[2].r; l++) {
                     generateSequenceUtil(n,m,k,a,b,c, arrayList,i,j,l);
-                    if (arrayList.size()==1){
-                        return true;
-                    }
                 }
             }
         }
-        return false;
     }
 
     private static void generateSequenceUtil(int n, int m, int k, int[] a, int[] b, int[] c, ArrayList<Sequence> arrayList, int x, int y, int z) {
