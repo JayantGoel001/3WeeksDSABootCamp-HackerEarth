@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 
 public class CyraString {
     public static void main(String[] args) throws IOException {
@@ -22,11 +19,12 @@ public class CyraString {
                     hashMap.replace(x, hashMap.get(x) + 1);
                 }
             }
-            int output = 1;
+            Long output = 1L;
             for (HashMap.Entry<Character, Integer> map : hashMap.entrySet()) {
-                output*=map.getValue()%(1000000000+7);
+                output*=map.getValue();
+                output%=(1000000000+7);
             }
-            System.out.println(output);
+            System.out.println(output%(1000000000+7));
         }
     }
 }
