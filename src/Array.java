@@ -58,6 +58,9 @@ public class Array {
             a[i] = fr.nextInt();
             b[i] = fr.nextInt();
             c[i] = fr.nextInt();
+            a[i]%=m;
+            b[i]%=m;
+            c[i]%=m;
         }
         Range[] ranges = new Range[3];
 
@@ -121,7 +124,7 @@ public class Array {
 
         int count = 0;
         for (int i = 0; i < n; i++) {
-            if((x*a[i]%m+y*b[i]%m-z*c[i]%m)%m==0){
+            if(((x%m)*(a[i]%m)+(y%m)*(b[i]%m)-(z%m)*(c[i]%m))%m==0){
                 count++;
             }
         }
