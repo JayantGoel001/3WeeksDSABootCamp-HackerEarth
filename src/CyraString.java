@@ -1,9 +1,7 @@
-import javax.swing.plaf.IconUIResource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class CyraString {
@@ -46,9 +44,10 @@ public class CyraString {
             return ;
         }
         char ch = str.charAt(0);
+        s.append(ch);
         generateSubset(str.substring(1),arrayList,s);
-        generateSubset(str.substring(1),arrayList,s.append(ch));
         s.delete(s.length()-1,s.length());
+        generateSubset(str.substring(1),arrayList,s);
     }
 
 }
