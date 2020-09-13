@@ -16,10 +16,10 @@ public class CyraString {
                 char x = str.charAt(j);
                 hashSet.add(x);
             }
-            int maxLen = hashSet.size()%(1000000000+7);
+            int maxLen = hashSet.size();
 
             ArrayList<String> arrayList = new ArrayList<>();
-            generateSubset(str,arrayList,new StringBuilder());
+            generateSubset(new StringBuilder(str),arrayList,new StringBuilder(),maxLen);
             int count = 0;
             for (String st:arrayList) {
                 if (st.length() == maxLen && getHashSet(st).size()==st.length()){
@@ -38,16 +38,22 @@ public class CyraString {
         return hashSet;
     }
 
-    private static void generateSubset(String str, ArrayList<String> arrayList, StringBuilder s) {
-        if(str.isEmpty()){
-            arrayList.add(s.toString());
+    private static void generateSubset(StringBuilder str, ArrayList<String> arrayList, StringBuilder s,int maxLen) {
+        if(str.length()==0){
+            if (s.length()==maxLen) {
+                arrayList.add(s.toString());
+            }
             return ;
         }
         char ch = str.charAt(0);
-        s.append(ch);
-        generateSubset(str.substring(1),arrayList,s);
-        s.delete(s.length()-1,s.length());
-        generateSubset(str.substring(1),arrayList,s);
-    }
+        str.delete(0,1);
 
+        s.append(ch);
+        generateSubset(str,arrayList,s,maxLen);
+        s.delete(s.length()-1,s.length());
+
+        generateSubset(str,arrayList,s,maxLen);
+
+        str.insert(0,ch);
+    }
 }
