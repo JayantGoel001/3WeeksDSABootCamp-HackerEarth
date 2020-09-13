@@ -21,26 +21,34 @@ public class CyraString {
             int maxLen = hashSet.size()%(1000000000+7);
 
             ArrayList<String> arrayList = new ArrayList<>();
-            generateSubset(str,arrayList,"");
+            generateSubset(str,arrayList,new StringBuilder());
             int count = 0;
             for (String st:arrayList) {
-                if (st.length() == maxLen){
+                if (st.length() == maxLen && getHashSet(st).size()==st.length()){
                     count++;
                 }
             }
-            System.out.println(arrayList);
             System.out.println(count%(1000000000+7));
         }
     }
 
-    private static void generateSubset(String str, ArrayList<String> arrayList, String s) {
+    private static HashSet<Character> getHashSet(String st) {
+        HashSet<Character> hashSet = new HashSet<>();
+        for (int i =0;i<st.length();i++) {
+            hashSet.add(st.charAt(i));
+        }
+        return hashSet;
+    }
+
+    private static void generateSubset(String str, ArrayList<String> arrayList, StringBuilder s) {
         if(str.isEmpty()){
-            arrayList.add(s);
+            arrayList.add(s.toString());
             return ;
         }
         char ch = str.charAt(0);
         generateSubset(str.substring(1),arrayList,s);
-        generateSubset(str.substring(1),arrayList,s+ch);
+        generateSubset(str.substring(1),arrayList,s.append(ch));
+        s.delete(s.length()-1,s.length());
     }
 
 }
