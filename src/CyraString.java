@@ -19,7 +19,7 @@ public class CyraString {
             int maxLen = hashSet.size();
 
             ArrayList<String> arrayList = new ArrayList<>();
-            generateSubset(new StringBuilder(str),arrayList,new StringBuilder(),maxLen);
+            generateSubset(new StringBuilder(str),arrayList,new StringBuilder(""),maxLen);
             int count = 0;
             for (String st:arrayList) {
                 if (st.length() == maxLen && getHashSet(st).size()==st.length()){
@@ -46,11 +46,11 @@ public class CyraString {
             return ;
         }
         char ch = str.charAt(0);
-        str.delete(0,1);
+        str.deleteCharAt(0);
 
         s.append(ch);
         generateSubset(str,arrayList,s,maxLen);
-        s.delete(s.length()-1,s.length());
+        s.deleteCharAt(s.length()-1);
 
         generateSubset(str,arrayList,s,maxLen);
 
