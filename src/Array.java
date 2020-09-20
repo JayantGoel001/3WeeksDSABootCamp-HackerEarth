@@ -96,12 +96,7 @@ public class Array {
         else if(x.x == min.x && x.y<min.y){
             return true;
         }
-        else if(x.x ==min.x && x.y==min.y && x.z<min.z){
-            return true;
-        }
-        else {
-            return false;
-        }
+        else return x.x == min.x && x.y == min.y && x.z < min.z;
     }
 
     private static void generateSequence(int n, int m, int k, int[] a, int[] b, int[] c, Range[] ranges, ArrayList<Sequence> arrayList) {
