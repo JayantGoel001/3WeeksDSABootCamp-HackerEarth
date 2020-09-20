@@ -9,7 +9,6 @@ public class BalancedParanthesis {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         for (int a = 0; a < n; a++) {
-
             Stack<Character> stack = new Stack<>();
             String seq = br.readLine();
             HashMap<Character, Character> hashMap = new HashMap<>();
@@ -29,10 +28,6 @@ public class BalancedParanthesis {
                             System.out.println("NO");
                             break;
                         }
-                    } else {
-                        notBalanced = true;
-                        System.out.println("YES");
-                        break;
                     }
                 }
             }
