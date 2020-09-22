@@ -37,16 +37,28 @@ public class SignalRange {
         for (int i = 0; i < t; i++) {
             int n = fr.nextInt();
             Long[] ar = new Long[n];
-            for (int j = 0; j < n; j++) {
-                ar[j] = fr.nextLong();
-            }
             Long[] count = new Long[n];
             for (int j = 0; j < n; j++) {
-                long ele= ar[j];
-                count[j] = 1L;
-                for (int k = j; k >=0 ; k--) {
-                    if (ele>ar[k]){
-                        count[j]++;
+                ar[j] = fr.nextLong();
+                count[j]=0L;
+            }
+            Stack<Long> stack = new Stack<>();
+            for (int j = 0; j < n; j++) {
+                if (stack.isEmpty()) {
+                    stack.push(ar[j]);
+                    count[j]=1L;
+                }else {
+                    if (stack.peek()>=ar[j]){
+                        stack.push(ar[j]);
+                        count[j] += 1L;
+                    }else {
+                        int k =j;
+                        while (stack.peek()<=ar[j]){
+                            count[j]+=count[--k];
+                            stack.pop();
+                        }
+                        stack.push(ar[j]);
+                        count[j]+=1;
                     }
                 }
             }
