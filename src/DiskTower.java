@@ -32,7 +32,7 @@ public class DiskTower {
         int min = n;
         int size = n;
         for (int i = 0; i < n; i++) {
-            int x= fr.nextInt();
+            int x = fr.nextInt();
             ar[x] = x;
             if (x==min){
                 while (ar[size]!=0){
