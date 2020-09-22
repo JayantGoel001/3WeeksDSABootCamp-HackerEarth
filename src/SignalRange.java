@@ -53,7 +53,7 @@ public class SignalRange {
                         count[j] += 1L;
                     }else {
                         int k =j;
-                        while (stack.peek()<=ar[j]){
+                        while (!stack.isEmpty() && stack.peek()<=ar[j]){
                             count[j]+=count[--k];
                             stack.pop();
                         }
