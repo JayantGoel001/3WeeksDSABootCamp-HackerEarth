@@ -58,7 +58,7 @@ public class SignalRange {
                             stack.pop();
                         }
                         stack.push(ar[j]);
-                        count[j]+=1;
+                        count[j]+=1L;
                     }
                 }
             }
