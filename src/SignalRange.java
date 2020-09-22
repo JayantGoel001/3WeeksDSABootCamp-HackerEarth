@@ -26,49 +26,36 @@ public class SignalRange {
         Integer nextInt() {
             return Integer.parseInt(next());
         }
-
-        public long nextLong() {
-            return Long.parseLong(next());
-        }
     }
     public static void main(String[] args) {
         FastReader fr = new FastReader();
         int t = fr.nextInt();
         for (int i = 0; i < t; i++) {
             int n = fr.nextInt();
-            Long[] ar = new Long[n];
-            Long[] count = new Long[n];
+            int[] ar = new int[n];
+            int[] count = new int[n];
             for (int j = 0; j < n; j++) {
-                ar[j] = fr.nextLong();
-                count[j]=0L;
+                ar[j] = fr.nextInt();
+                count[j]=0;
             }
-            Stack<Long> stack = new Stack<>();
-            HashMap<Long,Long> hashMap =new HashMap<>();
+            Stack<Integer> stack = new Stack<>();
             for (int j = 0; j < n; j++) {
-                if (stack.isEmpty()) {
-                    stack.push(ar[j]);
-                    count[j]=1L;
-                    hashMap.put(ar[j],count[j]);
-                }else {
-                    if (stack.peek()>=ar[j]){
-                        stack.push(ar[j]);
-                        count[j] += 1L;
-                        hashMap.put(ar[j],count[j]);
-                    }else {
-                        Long ele =stack.peek();
-                        while (!stack.isEmpty() && ele<=ar[j]){
-                            ele = stack.peek();
-                            count[j]+=hashMap.get(ele);
+                if (!stack.isEmpty()) {
+                    if (ar[stack.peek()] < ar[j]) {
+                        int k = stack.peek();
+                        while (!stack.isEmpty() && ar[k] <= ar[j]) {
+                            count[j] += count[k]+1;
                             stack.pop();
+                            if (!stack.empty()) {
+                                k = stack.peek();
+                            }
                         }
-                        stack.push(ar[j]);
-                        count[j]+=1L;
-                        hashMap.put(ar[j],count[j]);
                     }
                 }
+                stack.push(j);
             }
             for (int j = 0; j < n; j++) {
-                System.out.print(count[j]+" ");
+                System.out.print(count[j]+1+" ");
             }
             System.out.println();
         }
