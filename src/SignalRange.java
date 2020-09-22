@@ -39,23 +39,19 @@ public class SignalRange {
                 count[j]=0;
             }
             Stack<Integer> stack = new Stack<>();
-            for (int j = 0; j < n; j++) {
-                if (!stack.isEmpty()) {
-                    if (ar[stack.peek()] < ar[j]) {
-                        int k = stack.peek();
-                        while (!stack.isEmpty() && ar[k] <= ar[j]) {
-                            count[j] += count[k]+1;
-                            stack.pop();
-                            if (!stack.empty()) {
-                                k = stack.peek();
-                            }
-                        }
-                    }
+            for (int j = n-1; j >=0 ; j--) {
+                while (!stack.empty() && ar[j]>ar[stack.peek()]){
+                    count[stack.peek()]=j;
+                    stack.pop();
                 }
                 stack.push(j);
             }
+            while (!stack.empty()){
+                count[stack.peek()]=-1;
+                stack.pop();
+            }
             for (int j = 0; j < n; j++) {
-                System.out.print(count[j]+1+" ");
+                System.out.print(j-count[j]+" ");
             }
             System.out.println();
         }
